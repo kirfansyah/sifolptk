@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -11,31 +10,38 @@
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>DataTables - Vuexy - Bootstrap HTML admin template</title>
-    <link rel="apple-touch-icon" href="<?= base_url()?>/app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url()?>/app-assets/images/ico/favicon.ico">
+    <link rel="apple-touch-icon" href="<?= base_url() ?>/app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>/app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/app-assets/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/vendors/css/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/vendors/css/extensions/sweetalert2.min.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/app-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/app-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/app-assets/css/components.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/app-assets/css/themes/dark-layout.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/app-assets/css/themes/semi-dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/css/components.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/css/themes/dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/css/themes/semi-dark-layout.css">
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/app-assets/css/core/menu/menu-types/horizontal-menu.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/app-assets/css/core/colors/palette-gradient.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/css/core/menu/menu-types/horizontal-menu.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/app-assets/css/core/colors/palette-gradient.css">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="<?= base_url()?>/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/assets/css/style.css">
     <!-- END: Custom CSS-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <!-- END: Head-->
