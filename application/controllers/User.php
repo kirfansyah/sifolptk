@@ -115,12 +115,13 @@ class User extends CI_Controller
 			$this->session->set_flashdata('message', 'update');
 			redirect(base_url('user'));
 		}
-	}
+	} 
 
-	public function delete()
+	public function delete($id)
 	{
-		$id = $this->input->post('id');
+		// $id = $this->input->post('id');
 		$this->M_user->delete($id);
-		echo 'halo';
+		$this->session->set_flashdata('message', 'delete');
+		redirect(base_url('user'));
 	}
 }

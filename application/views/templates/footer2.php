@@ -30,6 +30,18 @@
 <script src="<?= base_url(); ?>/app-assets/vendors/js/extensions/polyfill.min.js"></script>
 <!-- END: Page Vendor JS-->
 
+<!-- BEGIN: Page Vendor JS-->
+<script src="<?= base_url(); ?>/app-assets/vendors/js/ui/jquery.sticky.js"></script>
+<script src="<?= base_url(); ?>/app-assets/vendors/js/pickers/pickadate/picker.js"></script>
+<script src="<?= base_url(); ?>/app-assets/vendors/js/pickers/pickadate/picker.date.js"></script>
+<script src="<?= base_url(); ?>/app-assets/vendors/js/pickers/pickadate/picker.time.js"></script>
+<script src="<?= base_url(); ?>/app-assets/vendors/js/pickers/pickadate/legacy.js"></script>
+<!-- END: Page Vendor JS-->
+
+<!-- BEGIN: Page JS-->
+<script src="<?= base_url(); ?>/app-assets/js/scripts/pickers/dateTime/pick-a-datetime.js"></script>
+<!-- END: Page JS-->
+
 
 </body>
 <!-- END: Body-->

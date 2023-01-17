@@ -41,7 +41,7 @@
                                                            <td><?= $user->is_active == '1' ? '<div class="badge badge-success">Aktif</div>' : '<div class="badge badge-Danger">Non-Aktif</div>' ?></td>
                                                            <td>
                                                                <a class="btn btn-sm btn-outline-success" href="<?= base_url('user/edit/') . $user->id ?>"><i class="feather icon-edit"></i></a>
-                                                               <a class="btn btn-sm btn-danger-success" href="<?= base_url('user/edit/') . $user->id ?>"><i class="feather icon-edit"></i></a>
+                                                               <!-- <a class="btn btn-sm btn-outline-danger" onclick="confirm('Hapus ?')" href="<?= base_url('user/delete/') . $user->id ?>"><i class="feather icon-edit"></i></a> -->
                                                                <div class="btn btn-sm btn-outline-danger hapus" id="hapus" data-data="<?= $user->id ?>"><i class="feather icon-trash"></i></div>
                                                            </td>
                                                        </tr>
@@ -369,6 +369,17 @@
 
            $('.hapus').click(function() {
                let id = $(this).attr('data-data')
+               let url = "<?= base_url()?>"
+               let x = confirm('Apakah anda akan menghapus data ini ?')               
+               if(x){
+                   window.location = url+"user/delete/"+id;                
+               }else{
+                   Swal.fire(
+                        'Cancel!',
+                        '',
+                        'error'
+                    )
+               }
 
 
            })
