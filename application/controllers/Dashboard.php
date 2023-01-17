@@ -24,11 +24,13 @@ class Dashboard extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		// is_logged_in();
+		$this->load->model(array('M_user', 'M_pegawai', 'M_layanan'));
 	}
 
 	public function index()
 	{
-		$this->load->view('dashboard');
+		$data['layanan'] = $this->M_layanan->get();
+		$data['pegawai'] = $this->M_pegawai->get();
+		$this->load->view('dashboard', $data);
 	}
 }

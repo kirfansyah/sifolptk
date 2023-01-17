@@ -143,15 +143,15 @@
                                                <div class="row match-height">
                                                    <div class="col-md-12 col-12">
                                                        <div class="card">
-                                                           <div class="card-header">
-                                                               <h4 class="card-title">Tambah P</h4>
+                                                           <div class="card-header" id="empty">
+                                                               <h4 class="card-title">Registrasi</h4>
                                                            </div>
-                                                           <form class="user" method="post" action="<?php echo base_url('pegawai/add'); ?> ">
+                                                           <form class="user" method="post" action="<?php echo base_url('registrasi/add'); ?> " id="form-registrasi">
                                                                <div class="card-content">
                                                                    <div class="card-body">
                                                                        <form class="form form-horizontal">
                                                                            <div class="form-body">
-                                                                               <div class="row">
+                                                                               <div class="row" id="noreg">
                                                                                    <div class="col-12">
                                                                                        <div class="form-group row">
                                                                                            <div class="col-md-4">
@@ -159,7 +159,7 @@
                                                                                            </div>
                                                                                            <div class="col-md-8">
                                                                                                <div class="position-relative has-icon-left">
-                                                                                                   <input type="text" id="nama" class="form-control nama" name="nama" placeholder="Nama" value="<?= set_value('nama'); ?>">
+                                                                                                   <input type="text" id="nama" class="form-control nama" name="nama" placeholder="Nama" value="<?= set_value('nama'); ?>" required>
                                                                                                    <div class="form-control-position">
                                                                                                        <i class="feather icon-user"></i>
                                                                                                    </div>
@@ -171,27 +171,11 @@
                                                                                    <div class="col-12">
                                                                                        <div class="form-group row">
                                                                                            <div class="col-md-4">
-                                                                                               <span>NIK</span>
-                                                                                           </div>
-                                                                                           <div class="col-md-8">
-                                                                                               <div class="position-relative has-icon-left">
-                                                                                                   <input maxlength="16" type="text" id="nik" class="form-control nik" name="nik" placeholder="NIK" value="<?= set_value('nik'); ?>">
-                                                                                                   <div class="form-control-position">
-                                                                                                       <i class="feather icon-user"></i>
-                                                                                                   </div>
-                                                                                                   <?php echo form_error('nik', '<small class="text-danger pl-3">', '</small>'); ?>
-                                                                                               </div>
-                                                                                           </div>
-                                                                                       </div>
-                                                                                   </div>
-                                                                                   <div class="col-12">
-                                                                                       <div class="form-group row">
-                                                                                           <div class="col-md-4">
                                                                                                <span>No. Hp</span>
                                                                                            </div>
                                                                                            <div class="col-md-8">
                                                                                                <div class="position-relative has-icon-left">
-                                                                                                   <input maxlength="13" type="text" id="no_hp" class="form-control no_hp" name="no_hp" placeholder="No. Hp" value="<?= set_value('no_hp'); ?>">
+                                                                                                   <input maxlength="13" type="text" id="no_hp" class="form-control no_hp" name="no_hp" placeholder="No. Hp" value="<?= set_value('no_hp'); ?>" required>
                                                                                                    <div class="form-control-position">
                                                                                                        <i class="feather icon-user"></i>
                                                                                                    </div>
@@ -203,17 +187,20 @@
                                                                                    <div class="col-12">
                                                                                        <div class="form-group row">
                                                                                            <div class="col-md-4">
-                                                                                               <span>Alamat</span>
+                                                                                               <span>Layanan</span>
                                                                                            </div>
                                                                                            <div class="col-md-8">
                                                                                                <div class="position-relative has-icon-left">
-                                                                                                   <fieldset class="form-group">
-                                                                                                       <textarea class="form-control" id="basicTextarea" name="alamat" rows="3" placeholder="Alamat"></textarea>
-                                                                                                   </fieldset>
+                                                                                                   <select class="form-control" name="layanan" required>
+                                                                                                       <option value="">-Pliih-</option>
+                                                                                                       <?php foreach ($layanan as $layanan_row) : ?>
+                                                                                                           <option value="<?= $layanan_row->id ?>"><?= $layanan_row->layanan ?></option>
+                                                                                                       <?php endforeach; ?>
+                                                                                                   </select>
                                                                                                    <div class="form-control-position">
                                                                                                        <i class="feather icon-users"></i>
                                                                                                    </div>
-                                                                                                   <?php echo form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                                                                                   <?php echo form_error('layanan', '<small class="text-danger pl-3">', '</small>'); ?>
                                                                                                </div>
                                                                                            </div>
                                                                                        </div>
@@ -221,53 +208,25 @@
                                                                                    <div class="col-12">
                                                                                        <div class="form-group row">
                                                                                            <div class="col-md-4">
-                                                                                               <span>Jabatan</span>
+                                                                                               <span>Pegawai</span>
                                                                                            </div>
                                                                                            <div class="col-md-8">
                                                                                                <div class="position-relative has-icon-left">
-                                                                                                   <input type="text" id="jabatan" class="form-control jabatan" name="jabatan" placeholder="Jabatan" value="<?= set_value('jabatan'); ?>">
-                                                                                                   <div class="form-control-position">
-                                                                                                       <i class="feather icon-mail"></i>
-                                                                                                   </div>
-                                                                                                   <?php echo form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
-                                                                                               </div>
-                                                                                           </div>
-                                                                                       </div>
-                                                                                   </div>
-                                                                                   <div class="col-12">
-                                                                                       <div class="form-group row">
-                                                                                           <div class="col-md-4">
-                                                                                               <span>Tgl. Lahir</span>
-                                                                                           </div>
-                                                                                           <div class="col-md-8">
-                                                                                               <div class="position-relative has-icon-left">
-                                                                                                   <input type="text" id="tgl_lahir" class="form-control pickadate" name="tgl_lahir" placeholder="Tgl. lahir" value="<?= set_value('tgl_lahir'); ?>">
-                                                                                                   <div class="form-control-position">
-                                                                                                       <i class="feather icon-calendar"></i>
-                                                                                                   </div>
-                                                                                                   <?php echo form_error('tgl_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
-                                                                                               </div>
-                                                                                           </div>
-                                                                                       </div>
-                                                                                   </div>
-                                                                                   <div class="col-12">
-                                                                                       <div class="form-group row">
-                                                                                           <div class="col-md-4">
-                                                                                               <span>Tempat Lahir</span>
-                                                                                           </div>
-                                                                                           <div class="col-md-8">
-                                                                                               <div class="position-relative has-icon-left">
-                                                                                                   <fieldset class="form-group">
-                                                                                                       <textarea class="form-control" id="basicTextarea" name="tempat_lahir" rows="3" placeholder="Tempat Lahir"></textarea>
-                                                                                                   </fieldset>
+                                                                                                   <select class="form-control" name="pegawai" required>
+                                                                                                       <option value="">-Pliih-</option>
+                                                                                                       <?php foreach ($pegawai as $pegawai_row) : ?>
+                                                                                                           <option value="<?= $pegawai_row->id ?>"><?= $pegawai_row->nama ?></option>
+                                                                                                       <?php endforeach; ?>
+                                                                                                   </select>
                                                                                                    <div class="form-control-position">
                                                                                                        <i class="feather icon-users"></i>
                                                                                                    </div>
-                                                                                                   <?php echo form_error('tempat_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
+                                                                                                   <?php echo form_error('pegawai', '<small class="text-danger pl-3">', '</small>'); ?>
                                                                                                </div>
                                                                                            </div>
                                                                                        </div>
                                                                                    </div>
+
                                                                                    <div class="form-group col-md-8 offset-md-4">
 
                                                                                    </div>
@@ -309,3 +268,41 @@
    <!-- END: Content-->
 
    <?php $this->load->view('templates/footer'); ?>
+   <script>
+       $("#form-registrasi").on("submit", function(event) {
+           event.preventDefault();
+           //    console.log($(this).serialize());
+           let x = confirm('Apakah anda yakin data yang di input sudah benar ?')
+           if (x) {
+               $.ajax({
+                   type: 'post',
+                   dataType: 'json',
+                   url: '<?= base_url("registrasi/add") ?>',
+                   data: $(this).serialize(),
+                   success: function(response) {
+                       console.log(response)
+                       if (response.status == 200) {
+                           $('#empty').html('')
+                           $('#noreg').html(`<h1>Nomor registrasi kamu <div class="badge badge-success">${response.noreg}<div></h1>`)
+                       } else {
+                           Swal.fire(
+                               response.message,
+                               '',
+                               'error'
+                           )
+                       }
+
+                   },
+                   error: function() {
+                       Swal.fire(
+                           'Gagal menyimpan data!',
+                           '',
+                           'error'
+                       )
+                   }
+
+               })
+           }
+
+       });
+   </script>
