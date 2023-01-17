@@ -40,6 +40,8 @@ class Registrasi extends CI_Controller
 			$noreg = $gn->id;
 		}
 
+		$insert_id = $this->db->insert_id();
+
 		$noreg = 'PTK' . $noreg . date('dmY');
 
 		if ($this->form_validation->run() == false) {
@@ -56,8 +58,19 @@ class Registrasi extends CI_Controller
 				'id_pegawai'         => htmlspecialchars($this->input->post('pegawai', true)),
 				'id_layanan'         => htmlspecialchars($this->input->post('layanan', true)),
 				'no_reg'             => $noreg,
-				'tanggal_registrasi' => date('Y-m-d')
+				'tanggal_registrasi' => date('Y-m-d'),
+				'sts_app'            => '0',
+				'keterangan'         => 'Menunggu approval pimpinan',
 			];
+
+			$datab = [
+
+				'id_pegawai' => htmlspecialchars($this->input->post('pegawai', true)),
+				'id_layanan' => htmlspecialchars($this->input->post('layanan', true)),
+				'no_reg'     => $noreg,
+				'keterangan' => 'Menunggu approval pimpinan',
+			];
+			$this->db->insert('tb_riwayat', $datab);
 			$this->db->insert('tb_registrasi', $data);
 			if ($this->db->affected_rows() > 0) {
 				$response = [

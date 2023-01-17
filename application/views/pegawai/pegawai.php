@@ -25,6 +25,7 @@
                                            <table class="table zero-configuration">
                                                <thead>
                                                    <tr>
+                                                       <th>No</th>
                                                        <th>Nama</th>
                                                        <th>NIK</th>
                                                        <th>No HP</th>
@@ -36,8 +37,9 @@
                                                    </tr>
                                                </thead>
                                                <tbody>
-                                                   <?php foreach ($pegawai as $pegawai_row) : ?>
+                                                   <?php $i=1; foreach ($pegawai as $pegawai_row) : ?>
                                                        <tr>
+                                                           <td><?= $i++ ?></td>
                                                            <td><?= $pegawai_row->nama ?></td>
                                                            <td><?= $pegawai_row->nik ?></td>
                                                            <td><?= $pegawai_row->no_hp ?></td>
@@ -54,6 +56,7 @@
 
                                                <tfoot>
                                                    <tr>
+                                                      <th>No</th>
                                                       <th>Nama</th>
                                                        <th>NIK</th>
                                                        <th>No HP</th>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Jan 2023 pada 09.45
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.5
+-- Generation Time: Jan 17, 2023 at 05:15 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_layanan`
+-- Table structure for table `tb_layanan`
 --
 
 CREATE TABLE `tb_layanan` (
@@ -33,18 +33,19 @@ CREATE TABLE `tb_layanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_layanan`
+-- Dumping data for table `tb_layanan`
 --
 
 INSERT INTO `tb_layanan` (`id`, `layanan`) VALUES
 (2, 'Layanan 1'),
 (3, 'Layanan 2'),
-(4, 'Layanan 3');
+(4, 'Layanan 3'),
+(5, 'Layanan 4');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pegawai`
+-- Table structure for table `tb_pegawai`
 --
 
 CREATE TABLE `tb_pegawai` (
@@ -59,7 +60,7 @@ CREATE TABLE `tb_pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_pegawai`
+-- Dumping data for table `tb_pegawai`
 --
 
 INSERT INTO `tb_pegawai` (`id`, `nama`, `nik`, `no_hp`, `alamat`, `jabatan`, `tgl_lahir`, `tempat_lahir`) VALUES
@@ -70,7 +71,7 @@ INSERT INTO `tb_pegawai` (`id`, `nama`, `nik`, `no_hp`, `alamat`, `jabatan`, `tg
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_registrasi`
+-- Table structure for table `tb_registrasi`
 --
 
 CREATE TABLE `tb_registrasi` (
@@ -81,29 +82,50 @@ CREATE TABLE `tb_registrasi` (
   `no_hp` varchar(128) DEFAULT NULL,
   `no_reg` varchar(128) DEFAULT NULL,
   `tanggal_registrasi` date DEFAULT NULL,
-  `sts_app` varchar(128) DEFAULT NULL
+  `sts_app` varchar(128) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_registrasi`
+-- Dumping data for table `tb_registrasi`
 --
 
-INSERT INTO `tb_registrasi` (`id`, `id_pegawai`, `id_layanan`, `nama`, `no_hp`, `no_reg`, `tanggal_registrasi`, `sts_app`) VALUES
-(1, 8, 2, 'CMP', '2222222222222', 'PTK17012023', '2023-01-17', NULL),
-(2, 8, 2, 'CMP', '2222222222222', 'PTK117012023', '2023-01-17', NULL),
-(3, 8, 2, 'CMP', '2222222222222', 'PTK217012023', '2023-01-17', NULL),
-(4, 8, 2, 'CMP', '2222222222222', 'PTK317012023', '2023-01-17', NULL),
-(5, 8, 2, 'CMP', '2222222222222', 'PTK417012023', '2023-01-17', NULL),
-(6, 8, 2, 'CMP', '4444444444444', 'PTK517012023', '2023-01-17', NULL),
-(7, 8, 2, 'CMP', '2222222222222', 'PTK617012023', '2023-01-17', NULL),
-(8, 8, 2, 'CMP', '2222222222222', 'PTK717012023', '2023-01-17', NULL),
-(9, 8, 2, 'CMP', '2222222222222', 'PTK817012023', '2023-01-17', NULL),
-(10, 9, 2, 'CMP', '2222222222222', 'PTK917012023', '2023-01-17', NULL);
+INSERT INTO `tb_registrasi` (`id`, `id_pegawai`, `id_layanan`, `nama`, `no_hp`, `no_reg`, `tanggal_registrasi`, `sts_app`, `keterangan`) VALUES
+(1, 8, 2, 'apa aja', '089603351280', 'PTK17012023', '2023-01-17', '0', 'Menunggu approval pimpinan'),
+(2, 9, 4, 'Ipan', '089603351280', 'PTK117012023', '2023-01-17', '0', 'Menunggu approval pimpinan'),
+(3, 9, 4, 'asdasd', '089603351280', 'PTK217012023', '2023-01-17', '0', 'Menunggu approval pimpinan'),
+(4, 10, 2, 'apa aja', '089603351280', 'PTK317012023', '2023-01-17', '0', 'Menunggu approval pimpinan'),
+(5, 9, 2, 'aa', '089603351280', 'PTK017012023', '2023-01-17', '0', 'Menunggu approval pimpinan');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `tb_riwayat`
+--
+
+CREATE TABLE `tb_riwayat` (
+  `id` int(11) NOT NULL,
+  `id_pegawai` int(11) DEFAULT NULL,
+  `id_layanan` int(11) DEFAULT NULL,
+  `no_reg` varchar(255) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_riwayat`
+--
+
+INSERT INTO `tb_riwayat` (`id`, `id_pegawai`, `id_layanan`, `no_reg`, `keterangan`) VALUES
+(1, 8, 2, 'PTK17012023', 'Menunggu approval pimpinan'),
+(2, 9, 4, 'PTK117012023', 'Menunggu approval pimpinan'),
+(3, 9, 4, 'PTK217012023', 'Menunggu approval pimpinan'),
+(4, 10, 2, 'PTK317012023', 'Menunggu approval pimpinan'),
+(5, 9, 2, 'PTK017012023', 'Menunggu approval pimpinan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -118,16 +140,16 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(4, 'Kiki Irvansyah', 'kikiirfansyah30@gmail.com', 'default.jpg', '$2y$10$Vd5ASEgUiSVc5V77M40p6.51QPE41EHcC2APOyzDdquOjJOdPXAp.', 1, 1, 1673872155);
+(4, 'Kiki Irvansyah', 'kikiirfansyah30@gmail.com', 'default.jpg', '$2y$10$kFugO6raSeOSXBFiqP8M/OBIkGx6NLHR7jXjcQ91JBDb0Gpe.dDOi', 1, 1, 1673872155);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_access_menu`
+-- Table structure for table `user_access_menu`
 --
 
 CREATE TABLE `user_access_menu` (
@@ -137,7 +159,7 @@ CREATE TABLE `user_access_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user_access_menu`
+-- Dumping data for table `user_access_menu`
 --
 
 INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
@@ -148,7 +170,7 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_menu`
+-- Table structure for table `user_menu`
 --
 
 CREATE TABLE `user_menu` (
@@ -158,18 +180,18 @@ CREATE TABLE `user_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user_menu`
+-- Dumping data for table `user_menu`
 --
 
 INSERT INTO `user_menu` (`id`, `menu`, `icon_menu`) VALUES
-(1, 'M', 'icon-check-square'),
-(2, 'D', 'icon-check-square'),
-(3, 'A', 'icon-check-square');
+(1, 'Master', 'icon-check-square'),
+(2, 'Data', 'icon-check-square'),
+(3, 'App', 'icon-check-square');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_role`
+-- Table structure for table `user_role`
 --
 
 CREATE TABLE `user_role` (
@@ -178,7 +200,7 @@ CREATE TABLE `user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user_role`
+-- Dumping data for table `user_role`
 --
 
 INSERT INTO `user_role` (`id`, `role`) VALUES
@@ -188,7 +210,7 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_sub_menu`
+-- Table structure for table `user_sub_menu`
 --
 
 CREATE TABLE `user_sub_menu` (
@@ -201,7 +223,7 @@ CREATE TABLE `user_sub_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user_sub_menu`
+-- Dumping data for table `user_sub_menu`
 --
 
 INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
@@ -209,7 +231,7 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (2, 1, 'Role Akses', 'user/role', 'icon-users', 1),
 (3, 1, 'Data Pegawai', 'pegawai/', 'icon-users', 1),
 (4, 2, 'Cek Data Harian', '', 'icon-users', 1),
-(5, 3, 'Approval', '', 'icon-users', 1),
+(5, 3, 'Approval', 'approval/', 'icon-users', 1),
 (6, 1, 'Layanan', 'layanan/', '\r\nicon-file-minus', 1);
 
 --
@@ -217,101 +239,113 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 --
 
 --
--- Indeks untuk tabel `tb_layanan`
+-- Indexes for table `tb_layanan`
 --
 ALTER TABLE `tb_layanan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tb_pegawai`
+-- Indexes for table `tb_pegawai`
 --
 ALTER TABLE `tb_pegawai`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tb_registrasi`
+-- Indexes for table `tb_registrasi`
 --
 ALTER TABLE `tb_registrasi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `tb_riwayat`
+--
+ALTER TABLE `tb_riwayat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user_access_menu`
+-- Indexes for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user_menu`
+-- Indexes for table `user_menu`
 --
 ALTER TABLE `user_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user_role`
+-- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user_sub_menu`
+-- Indexes for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `tb_layanan`
+-- AUTO_INCREMENT for table `tb_layanan`
 --
 ALTER TABLE `tb_layanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_pegawai`
+-- AUTO_INCREMENT for table `tb_pegawai`
 --
 ALTER TABLE `tb_pegawai`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_registrasi`
+-- AUTO_INCREMENT for table `tb_registrasi`
 --
 ALTER TABLE `tb_registrasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `tb_riwayat`
+--
+ALTER TABLE `tb_riwayat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `user_access_menu`
+-- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `user_menu`
+-- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `user_role`
+-- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `user_sub_menu`
+-- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;

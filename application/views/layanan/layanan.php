@@ -25,14 +25,16 @@
                                            <table class="table zero-configuration">
                                                <thead>
                                                    <tr>
+                                                       <th>No</th>
                                                        <th>Layanan</th>
 
                                                        <th>Aksi</th>
                                                    </tr>
                                                </thead>
                                                <tbody>
-                                                   <?php foreach ($layanan as $layanan_row) : ?>
+                                                   <?php $i=1; foreach ($layanan as $layanan_row) : ?>
                                                        <tr>
+                                                           <td><?= $i++ ?></td>
                                                            <td><?= $layanan_row->layanan ?></td>
                                                            <td>
                                                                <a class="btn btn-sm btn-outline-success" href="<?= base_url('layanan/edit/') . $layanan_row->id ?>"><i class="feather icon-edit"></i></a>
@@ -43,6 +45,7 @@
 
                                                <tfoot>
                                                    <tr>
+                                                       <th>No</th>
                                                        <th>Layanan</th>
                                                        <th>Aksi</th>
                                                    </tr>

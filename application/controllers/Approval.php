@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class User extends CI_Controller
+class Approval extends CI_Controller
 {
 
 	/**
@@ -24,13 +24,13 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 		// is_logged_in();
-		$this->load->model(array('M_user'));
+		$this->load->model(array('M_user', 'M_approval'));
 	}
 
 	public function index()
 	{
-		$data['users'] = $this->M_user->get();
-		$this->load->view('user/user', $data);
+		$data['approval'] = $this->M_approval->get();
+		$this->load->view('approval/approval', $data);
 	}
 
 	public function add_user()

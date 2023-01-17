@@ -14,48 +14,53 @@
                        <div class="col-12">
                            <div class="card">
                                <div class="card-header">
-                                   <h4 class="card-title">DATA USER</h4>
+                                   <h4 class="card-title">DATA APPROVAL</h4>
                                </div>
                                <div class="card-content">
                                    <div class="card-body card-dashboard">
 
-                                       <a type="button" href="<?= base_url('user/add_user') ?>" class="btn btn-primary btn-sm waves-effect waves-light" name="btn_add" value=""><i class="feather icon-plus-circle
-"></i> Tambah User</a>
+                                       
                                        <div class="table-responsive">
                                            <table class="table zero-configuration">
                                                <thead>
                                                    <tr>
                                                        <th>No</th>
-                                                       <th>Nama</th>
-                                                       <th>Email</th>
-                                                       <th>Role</th>
-                                                       <th>Status</th>
+                                                       <th>Nama Pemohon</th>
+                                                       <th>No. Hp</th>
+                                                       <th>No. Reg</th>
+                                                       <th>Tanggal Registrasi</th>
+                                                       <th>Layanan</th>
+                                                       <th>Pegawai pelayanan</th>
                                                        <th>Aksi</th>
                                                    </tr>
                                                </thead>
                                                <tbody>
-                                                   <?php $i=1; foreach ($users as $user) : ?>
+                                                   <?php $i=1; foreach ($approval as $app) : ?>
                                                        <tr>
                                                            <td><?= $i++ ?></td>
-                                                           <td><?= $user->name ?></td>
-                                                           <td><?= $user->email ?></td>
-                                                           <td><?= $user->role_id == '1' ? '<div class="badge badge-primary">Admin</div>' : '<div class="badge badge-warning">User</div>' ?></td>
-                                                           <td><?= $user->is_active == '1' ? '<div class="badge badge-success">Aktif</div>' : '<div class="badge badge-Danger">Non-Aktif</div>' ?></td>
+                                                           <td><?= $app->nama ?></td>
+                                                           <td><?= $app->no_hp ?></td>
+                                                           <td> <span class="badge badge-success"><?=$app->no_reg  ?></span></td>
+                                                           <td><?= date('d-m-Y', strtotime($app->tanggal_registrasi))  ?></td>
+                                                           <td><?= $app->layanan  ?></td>
+                                                           <td><?= $app->nama_pegawai  ?></td>
+                                                          
                                                            <td>
-                                                               <a class="btn btn-sm btn-outline-success" href="<?= base_url('user/edit/') . $user->id ?>"><i class="feather icon-edit"></i></a>
-                                                               <!-- <a class="btn btn-sm btn-outline-danger" onclick="confirm('Hapus ?')" href="<?= base_url('user/delete/') . $user->id ?>"><i class="feather icon-edit"></i></a> -->
-                                                               <div class="btn btn-sm btn-outline-danger hapus" id="hapus" data-data="<?= $user->id ?>"><i class="feather icon-trash"></i></div>
+                                                               <a class="btn btn-sm btn-outline-success" href="<?= base_url('approval/cek/') . $app->id ?>"><i class="feather icon-edit"></i></a>
+                                                               
                                                            </td>
                                                        </tr>
                                                    <?php endforeach; ?>
 
                                                <tfoot>
                                                    <tr>
-                                                       <th>No</th>
-                                                       <th>Nama</th>
-                                                       <th>Email</th>
-                                                       <th>Role</th>
-                                                       <th>Status</th>
+                                                   <th>No</th>
+                                                       <th>Nama Pemohon</th>
+                                                       <th>No. Hp</th>
+                                                       <th>No. Reg</th>
+                                                       <th>Tanggal Registrasi</th>
+                                                       <th>Layanan</th>
+                                                       <th>Pegawai pelayanan</th>
                                                        <th>Aksi</th>
                                                    </tr>
                                                </tfoot>

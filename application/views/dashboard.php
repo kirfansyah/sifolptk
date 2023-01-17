@@ -284,6 +284,12 @@
                        if (response.status == 200) {
                            $('#empty').html('')
                            $('#noreg').html(`<h1>Nomor registrasi kamu <div class="badge badge-success">${response.noreg}<div></h1>`)
+
+                           Swal.fire(
+                               'Sukses Mendapat Nomor Registrasi!',
+                               '',
+                               'success'
+                           )
                        } else {
                            Swal.fire(
                                response.message,
@@ -302,6 +308,12 @@
                    }
 
                })
+           }else{
+            Swal.fire(
+                           'Batal!',
+                           '',
+                           'error'
+                       )
            }
 
        });
