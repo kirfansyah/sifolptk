@@ -17,7 +17,11 @@ class M_approval extends CI_Model
 
     public function get_by_id($id)
     {
-        return $this->db->get_where($this->table, ['id' => $id])->row();
+        $query = $this->db->query("SELECT a.id, a.nama, a.no_hp, a.no_reg, a.tanggal_registrasi, a.keterangan, b.layanan, a.sts_app, c.nama as nama_pegawai FROM tb_registrasi as a 
+        LEFT JOIN tb_layanan as b on a.id_layanan = b.id
+        LEFT JOIN tb_pegawai as c on a.id_pegawai = c.id
+        WHERE a.sts_app = '0' AND a.id = '$id'")->row();
+        return $query;
     }
 
     public function get_role()

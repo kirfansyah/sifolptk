@@ -46,7 +46,7 @@
                                                            <td><?= $app->nama_pegawai  ?></td>
                                                           
                                                            <td>
-                                                               <a class="btn btn-sm btn-outline-success" href="<?= base_url('approval/cek/') . $app->id ?>"><i class="feather icon-edit"></i></a>
+                                                               <a class="btn btn-sm btn-outline-success" href="<?= base_url('approval/cek/') . $app->id ?>"><i class="feather icon-search"></i></a>
                                                                
                                                            </td>
                                                        </tr>
