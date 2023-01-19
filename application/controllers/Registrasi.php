@@ -69,6 +69,7 @@ class Registrasi extends CI_Controller
 				'id_layanan' => htmlspecialchars($this->input->post('layanan', true)),
 				'no_reg'     => $noreg,
 				'keterangan' => 'Menunggu approval pimpinan',
+				'time' => time(),
 			];
 			$this->db->insert('tb_riwayat', $datab);
 			$this->db->insert('tb_registrasi', $data);

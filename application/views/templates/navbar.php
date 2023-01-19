@@ -32,19 +32,33 @@ $menu = $this->db->query($queryMenu)->result();
                         </ul>
 
                     </div>
-                   
+
                     <ul class="nav navbar-nav float-right">
-                        <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                            
-                                <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">John Doe</span><span class="user-status">Available</span></div><span><img class="round" src="<?= base_url(); ?>/app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="auth-login.html"><i class="feather icon-power"></i> Logout</a>
-                            </div>
-                            
-                        </li>
+                        <?php if ($this->session->userdata('user')) { ?>
+                            <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+
+                                    <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">John Doe</span><span class="user-status">Available</span></div><span><img class="round" src="<?= base_url(); ?>/app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"></span>
+
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="auth-login.html"><i class="feather icon-power"></i> Logout</a>
+                                </div>
+
+                            </li>
+                        <?php } else { ?>
+                            <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+
+
+                                    <div style="height: 40px; width:40px;"></div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="<?= base_url('auth') ?>"><i class="feather icon-power"></i> Login</a>
+                                </div>
+
+                            </li>
+                        <?php } ?>
                     </ul>
-                   
+
                 </div>
             </div>
         </div>
@@ -135,8 +149,8 @@ $menu = $this->db->query($queryMenu)->result();
             <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">
                     <li class="nav-item mr-auto"><a class="navbar-brand" href="../../../html/ltr/horizontal-menu-template/index.html">
-                            <div class="brand-logo"></div>
-                            <h2 class="brand-text mb-0">Vuexy</h2>
+                            <!-- <div class="brand-logo"></div> -->
+                            <h2 class="brand-text mb-0">SIFOLPTK</h2>
                         </a></li>
                     <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary" data-ticon="icon-disc"></i></a></li>
                 </ul>
@@ -157,7 +171,8 @@ $menu = $this->db->query($queryMenu)->result();
                                                     FROM `user_sub_menu` JOIN `user_menu`
                                                     ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
                                                     WHERE `user_sub_menu`.`menu_id` = $menuId
-                                                    AND `user_sub_menu`.`is_active` = 1";
+                                                    AND `user_sub_menu`.`is_active` = 1
+                                                    AND `user_sub_menu`.`id` != 2";
 
                                 $subMenu = $this->db->query($querySubMenu)->result();
                                 ?>

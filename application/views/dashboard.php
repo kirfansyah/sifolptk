@@ -76,8 +76,27 @@
                                                <!-- users edit media object ends -->
                                                <!-- users edit account form start -->
                                                <div class="card">
+
                                                    <div class="card-header">
-                                                       <h4 class="card-title">Timeline Pelayanan</h4>
+                                                       <div class="col">
+                                                           <div class="col">
+                                                               <div class="col">
+                                                                   <h4 class="card-title">Timeline Pelayanan</h4>
+                                                               </div>
+
+                                                           </div>
+
+                                                       </div>
+
+                                                   </div>
+                                                   <div class="card-header">
+                                                       <form class="form-inline no_regis">
+                                                           <div class="form-group mx-sm-3 mb-2 mr-1">
+                                                               <label for="inputPassword2" class="sr-only">No Registrasi</label>
+                                                               <input type="text" class="form-control" id="inputPassword2" name="no_regis" placeholder="No Registrasi">
+                                                           </div>
+                                                           <button type="submit" class="btn btn-primary mb-2">Tracking Proses</button>
+                                                       </form>
                                                    </div>
                                                    <div class="card-content">
                                                        <div class="card-body">
@@ -308,12 +327,60 @@
                    }
 
                })
-           }else{
-            Swal.fire(
-                           'Batal!',
+           } else {
+               Swal.fire(
+                   'Batal!',
+                   '',
+                   'error'
+               )
+           }
+
+       });
+       $(".no_regis").on("submit", function(event) {
+           event.preventDefault();
+           console.log($('.no_regis').serialize());
+           let x = confirm('Apakah anda yakin data yang di input sudah benar ?')
+           if (x) {
+               $.ajax({
+                   type: 'post',
+                   dataType: 'json',
+                   url: '<?= base_url("dashboard/tracking") ?>',
+                   data: $(this).serialize(),
+                   success: function(response) {
+                       console.log(response)
+                       if (response.status == 200) {
+                           $('#empty').html('')
+                           $('#noreg').html(`<h1>Nomor registrasi kamu <div class="badge badge-success">${response.noreg}<div></h1>`)
+
+                           Swal.fire(
+                               'Sukses Mendapat Nomor Registrasi!',
+                               '',
+                               'success'
+                           )
+                       } else {
+                           Swal.fire(
+                               response.message,
+                               '',
+                               'error'
+                           )
+                       }
+
+                   },
+                   error: function() {
+                       Swal.fire(
+                           'Gagal menyimpan data!',
                            '',
                            'error'
                        )
+                   }
+
+               })
+           } else {
+               Swal.fire(
+                   'Batal!',
+                   '',
+                   'error'
+               )
            }
 
        });

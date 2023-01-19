@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_approval extends CI_Model
+class M_harian extends CI_Model
 {
-    public $table = 'tb_registrasi';
+    public $table = 'tb_riwayat';
     public $table2 = 'tb_layanan';
     public $table3 = 'tb_pegawai';
 
@@ -12,7 +12,7 @@ class M_approval extends CI_Model
         return $this->db->query("SELECT a.id, a.nama, a.no_hp, a.no_reg, a.tanggal_registrasi, a.keterangan, b.layanan, a.sts_app, c.nama as nama_pegawai FROM tb_registrasi as a 
         LEFT JOIN tb_layanan as b on a.id_layanan = b.id
         LEFT JOIN tb_pegawai as c on a.id_pegawai = c.id
-        WHERE a.sts_app = '0'")->result();
+        WHERE a.sts_app = '1' OR a.sts_app = '2'")->result();
     }
 
     public function get_by_id($id)
@@ -20,7 +20,13 @@ class M_approval extends CI_Model
         $query = $this->db->query("SELECT a.id, a.nama, a.no_hp, a.no_reg, a.tanggal_registrasi, a.keterangan,b.id as id_layanan, b.layanan, a.sts_app,c.id as id_pegawai, c.nama as nama_pegawai FROM tb_registrasi as a 
         LEFT JOIN tb_layanan as b on a.id_layanan = b.id
         LEFT JOIN tb_pegawai as c on a.id_pegawai = c.id
-        WHERE a.sts_app = '0' AND a.id = '$id'")->row();
+        WHERE (a.sts_app = '1' OR a.sts_app = '2') AND a.id = '$id'")->row();
+        return $query;
+    }
+
+    public function get_timeline($no_reg)
+    {
+        $query = $this->db->query("SELECT * FROM tb_riwayat WHERE no_reg = '$no_reg' ORDER BY id DESC")->result();
         return $query;
     }
 

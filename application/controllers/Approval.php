@@ -24,7 +24,7 @@ class Approval extends CI_Controller
 	{
 		parent::__construct();
 		// is_logged_in();
-		$this->load->model(array('M_user', 'M_approval'));
+		$this->load->model(array('M_user', 'M_approval', 'M_registrasi'));
 	}
 
 	public function index()
@@ -33,43 +33,67 @@ class Approval extends CI_Controller
 		$this->load->view('approval/approval', $data);
 	}
 
-	
+
 
 	public function cek($id)
 	{
-		$data['approval'] = $this->M_approval->get_by_id($id);	
+		$data['approval'] = $this->M_approval->get_by_id($id);
 		$this->load->view('approval/cek_data', $data);
 	}
 
 	public function update()
 	{
 		$id = $this->input->post('id');
-		$this->form_validation->set_rules('name', 'Name', 'required|trim');
-		$this->form_validation->set_rules('role', 'Role', 'required|trim');
-		$this->form_validation->set_rules('status', 'Status', 'required|trim');
+		$this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+		$this->form_validation->set_rules('no_hp', 'No Hp', 'required|trim');
+		$this->form_validation->set_rules('no_reg', 'No Reg', 'required|trim');
 
 
 		if ($this->form_validation->run() == false) {
-			$data['user'] = $this->M_user->get_by_id($id);
-			$data['roles'] = $this->M_user->get_role();
-			$data['status'] = [1 => 'Aktif', 2 => 'Non-Aktif'];
-			return $this->load->view('user/edit_user', $data);
+			$response = [
+				'status' => 500,
+				'message' => validation_errors()
+			];
+			echo json_encode($response);
 		} else {
 
-			$email = $this->input->post('email', true);
 			$data = [
 
-				'name'         => htmlspecialchars($this->input->post('name', true)),
-				'password'     => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-				'role_id'      => htmlspecialchars($this->input->post('role', true)),
-				'is_active'    => htmlspecialchars($this->input->post('status', true))
-
+				'nama'               => htmlspecialchars($this->input->post('nama', true)),
+				'no_hp'              => htmlspecialchars($this->input->post('no_hp', true)),
+				'id_pegawai'         => htmlspecialchars($this->input->post('pegawai', true)),
+				'id_layanan'         => htmlspecialchars($this->input->post('layanan', true)),
+				'no_reg'             => htmlspecialchars($this->input->post('no_reg', true)),
+				'tanggal_registrasi' => htmlspecialchars($this->input->post('tanggal_registrasi', true)),
+				'sts_app'            => '1',
+				'keterangan'         => 'Permohonan telah di approve',
 			];
-			$this->M_user->update($data, $id);
-			$this->session->set_flashdata('message', 'update');
-			redirect(base_url('user'));
+			$datab = [
+
+				'id_pegawai' => htmlspecialchars($this->input->post('pegawai', true)),
+				'id_layanan' => htmlspecialchars($this->input->post('layanan', true)),
+				'no_reg'     => htmlspecialchars($this->input->post('no_reg', true)),
+				'keterangan' => 'Permohonan telah di approve',
+				'time' => time(),
+			];
+			$this->M_approval->update($data, $id);
+			$this->db->insert('tb_riwayat', $datab);
+
+			if ($this->db->affected_rows() > 0) {
+				$response = [
+					'status'  => 200,
+					'message' => 'Berhasil Approve data'
+				];
+				echo json_encode($response);
+			} else {
+				$response = [
+					'status' => 500,
+					'message' => 'Gagal Approve data'
+				];
+				echo json_encode($response);
+			}
 		}
-	} 
+	}
 
 	public function delete($id)
 	{

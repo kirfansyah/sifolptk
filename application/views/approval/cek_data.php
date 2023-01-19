@@ -1,10 +1,11 @@
    <?php $this->load->view('templates/header'); ?>
    <?php $this->load->view('templates/navbar'); ?>
-<style>
-    th{
-        height: 40px;;
-    }
-</style>
+   <style>
+       th {
+           height: 40px;
+           ;
+       }
+   </style>
    <!-- BEGIN: Content-->
    <div class="app-content content">
        <div class="content-overlay"></div>
@@ -28,62 +29,92 @@
                                                    <div class="row">
                                                        <div class="col-12">
                                                            <table align="center">
-                                                            <thead>
-                                                                <tr>
-                                                                <th><h1>Permohonan <?= $approval->layanan ?></h1></th>
-                                                                </tr>
-                                                                <tr>
-                                                                <th><hr></th>
-                                                                </tr>
-                                                                
-                                                            </thead>
+                                                               <thead>
+                                                                   <tr>
+                                                                       <th>
+                                                                           <h1>Permohonan <?= $approval->layanan ?></h1>
+                                                                       </th>
+                                                                   </tr>
+                                                                   <tr>
+                                                                       <th>
+                                                                           <hr>
+                                                                       </th>
+                                                                   </tr>
+
+                                                               </thead>
                                                            </table>
                                                            <br>
                                                            <br>
-                                                           <table align="left" style="height: 80px;;">                                                            
-                                                                <tr>
-                                                                <th><h4>Nama Pemohon</h4></th>
-                                                                <th style="width: 60px;;"></th>
-                                                                <th> :</th>
-                                                                <th style="width: 40px;;"></th>
-                                                                <th><h4><?= $approval->nama ?></h4></th>
-                                                                </tr>  
-                                                                <tr>
-                                                                <th><h4>No. Hp</h4></th>
-                                                                <th style="width: 60px;;"></th>
-                                                                <th> :</th>
-                                                                <th style="width: 0px;;"></th>
-                                                                <th><h4><?= $approval->no_hp ?></h4></th>
-                                                                </tr>                                                                
-                                                                <tr>
-                                                                <th><h4>No. Registrasi</h4></th>
-                                                                <th style="width: 60px;;"></th>
-                                                                <th> :</th>
-                                                                <th style="width: 0px;;"></th>
-                                                                <th><h4><div class="badge badge-success"><?= $approval->no_reg ?></div></h4></th>
-                                                                </tr>                                                                
-                                                                <tr>
-                                                                <th><h4>Tanggal Registrasi</h4></th>
-                                                                <th style="width: 60px;;"></th>
-                                                                <th> :</th>
-                                                                <th style="width: 0px;;"></th>
-                                                                <th><h4><?= date('d-m-Y', strtotime($approval->tanggal_registrasi)) ?></h4></th>
-                                                                </tr>   
-                                                                <tr>
-                                                                <th><h4>Pengajuan Layanan</h4></th>
-                                                                <th style="width: 60px;;"></th>
-                                                                <th> :</th>
-                                                                <th style="width: 0px;;"></th>
-                                                                <th><h4><?= $approval->layanan ?></h4></th>
-                                                                </tr> 
-                                                                <tr>
-                                                                <th><h4>Petugas Layanan</h4></th>
-                                                                <th style="width: 60px;;"></th>
-                                                                <th> :</th>
-                                                                <th style="width: 0px;;"></th>
-                                                                <th><h4><?= $approval->nama_pegawai ?></h4></th>
-                                                                </tr>                                                               
-                                                            
+                                                           <table align="left" style="height: 80px;;">
+                                                               <tr>
+                                                                   <th>
+                                                                       <h4>Nama Pemohon</h4>
+                                                                   </th>
+                                                                   <th style="width: 60px;;"></th>
+                                                                   <th> :</th>
+                                                                   <th style="width: 40px;;"></th>
+                                                                   <th>
+                                                                       <h4><?= $approval->nama ?></h4>
+                                                                   </th>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>
+                                                                       <h4>No. Hp</h4>
+                                                                   </th>
+                                                                   <th style="width: 60px;;"></th>
+                                                                   <th> :</th>
+                                                                   <th style="width: 0px;;"></th>
+                                                                   <th>
+                                                                       <h4><?= $approval->no_hp ?></h4>
+                                                                   </th>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>
+                                                                       <h4>No. Registrasi</h4>
+                                                                   </th>
+                                                                   <th style="width: 60px;;"></th>
+                                                                   <th> :</th>
+                                                                   <th style="width: 0px;;"></th>
+                                                                   <th>
+                                                                       <h4>
+                                                                           <div class="badge badge-success"><?= $approval->no_reg ?></div>
+                                                                       </h4>
+                                                                   </th>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>
+                                                                       <h4>Tanggal Registrasi</h4>
+                                                                   </th>
+                                                                   <th style="width: 60px;;"></th>
+                                                                   <th> :</th>
+                                                                   <th style="width: 0px;;"></th>
+                                                                   <th>
+                                                                       <h4><?= date('d-m-Y', strtotime($approval->tanggal_registrasi)) ?></h4>
+                                                                   </th>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>
+                                                                       <h4>Pengajuan Layanan</h4>
+                                                                   </th>
+                                                                   <th style="width: 60px;;"></th>
+                                                                   <th> :</th>
+                                                                   <th style="width: 0px;;"></th>
+                                                                   <th>
+                                                                       <h4><?= $approval->layanan ?></h4>
+                                                                   </th>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>
+                                                                       <h4>Petugas Layanan</h4>
+                                                                   </th>
+                                                                   <th style="width: 60px;;"></th>
+                                                                   <th> :</th>
+                                                                   <th style="width: 0px;;"></th>
+                                                                   <th>
+                                                                       <h4><?= $approval->nama_pegawai ?></h4>
+                                                                   </th>
+                                                               </tr>
+
                                                            </table>
                                                        </div>
 
@@ -91,8 +122,13 @@
 
                                                        </div>
                                                        <div class="col-md-2  offset-md-9">
-                                                        <input type="hidden" name="id" value="<?= $approval->id ?>">
-                                                        <input type="hidden" name="id" value="<?= $approval->id ?>">
+                                                           <input type="hidden" name="id" value="<?= $approval->id ?>">
+                                                           <input type="hidden" name="nama" value="<?= $approval->nama ?>">
+                                                           <input type="hidden" name="no_hp" value="<?= $approval->no_hp ?>">
+                                                           <input type="hidden" name="no_reg" value="<?= $approval->no_reg ?>">
+                                                           <input type="hidden" name="tanggal_registrasi" value="<?= $approval->tanggal_registrasi ?>">
+                                                           <input type="hidden" name="layanan" value="<?= $approval->id_layanan ?>">
+                                                           <input type="hidden" name="pegawai" value="<?= $approval->id_pegawai ?>">
                                                            <button type="submit" class="btn btn-primary mr-1 mb-1">Approve</button>
                                                            <!-- <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button> -->
                                                        </div>
@@ -115,9 +151,9 @@
 
 
    <?php $this->load->view('templates/footer'); ?>
-   
-    <script>
-         $("#approve").on("submit", function(event) {
+
+   <script>
+       $("#approve").on("submit", function(event) {
            event.preventDefault();
            //    console.log($(this).serialize());
            let x = confirm('Anda ingin approve data ini ?')
@@ -130,14 +166,17 @@
                    success: function(response) {
                        console.log(response)
                        if (response.status == 200) {
-                           $('#empty').html('')
-                           $('#noreg').html(`<h1>Nomor registrasi kamu <div class="badge badge-success">${response.noreg}<div></h1>`)
+                           //    $('#empty').html('')
+                           //    $('#noreg').html(`<h1>Nomor registrasi kamu <div class="badge badge-success">${response.noreg}<div></h1>`)
 
                            Swal.fire(
-                               'Sukses Mendapat Nomor Registrasi!',
+                               response.message,
                                '',
                                'success'
                            )
+                           setTimeout(function() {
+                               window.location.href = "<?= base_url('approval') ?>"
+                           }, 2000)
                        } else {
                            Swal.fire(
                                response.message,
@@ -156,13 +195,13 @@
                    }
 
                })
-           }else{
-            Swal.fire(
-                           'Batal!',
-                           '',
-                           'error'
-                       )
+           } else {
+               Swal.fire(
+                   'Batal!',
+                   '',
+                   'error'
+               )
            }
 
        });
-    </script>
+   </script>
