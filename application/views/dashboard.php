@@ -19,7 +19,7 @@
                        <div class="col-md-6 col-sm-12">
                            <div class="card">
                                <div class="card-header">
-                                   <h4 class="card-title">Crossfade</h4>
+                                   <h4 class="card-title">PUSAT INFORMASI LAYANAN PTK</h4>
                                </div>
                                <div class="card-content">
                                    <div class="card-body">
@@ -30,13 +30,13 @@
                                        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                                            <div class="carousel-inner">
                                                <div class="carousel-item active">
-                                                   <img src="<?= base_url() ?>/app-assets/images/slider/06.jpg" class="img-fluid d-block w-100" alt="cf-img-1">
+                                                   <img src="<?= base_url() ?>/app-assets/images/slider/3375854.jpg" class="img-fluid d-block w-100" alt="cf-img-1">
                                                </div>
                                                <div class="carousel-item">
-                                                   <img src="<?= base_url() ?>/app-assets/images/slider/02.jpg" class="img-fluid d-block w-100" alt="cf-img-2">
+                                                   <img src="<?= base_url() ?>/app-assets/images/slider/2961334.jpg" class="img-fluid d-block w-100" alt="cf-img-2">
                                                </div>
                                                <div class="carousel-item">
-                                                   <img src="<?= base_url() ?>/app-assets/images/slider/05.jpg" class="img-fluid d-block w-100" alt="cf-img-3">
+                                                   <img src="<?= base_url() ?>/app-assets/images/slider/5128511.jpg" class="img-fluid d-block w-100" alt="cf-img-3">
                                                </div>
                                            </div>
                                            <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">

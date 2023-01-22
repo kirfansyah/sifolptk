@@ -1,17 +1,17 @@
 <!-- QUERY MENU -->
 
 <?php
-// if (($this->session->userdata('role_id'))) {
-// $role_id = $this->session->userdata('role_id');
-$role_id = 1;
-$queryMenu = "SELECT `user_menu`.`id`, `menu`, `icon_menu`
+if (($this->session->userdata('role_id'))) {
+    $role_id = $this->session->userdata('role_id');
+    // $role_id = 1;
+    $queryMenu = "SELECT `user_menu`.`id`, `menu`, `icon_menu`
                         FROM `user_menu` JOIN `user_access_menu`
                         ON `user_menu`.`id` = `user_access_menu`.`menu_id`
                         WHERE `user_access_menu`.`role_id` =  $role_id
                         ORDER BY `user_access_menu`.`menu_id` ASC 
                         ";
-$menu = $this->db->query($queryMenu)->result();
-// }
+    $menu = $this->db->query($queryMenu)->result();
+}
 
 ?>
 
@@ -34,14 +34,14 @@ $menu = $this->db->query($queryMenu)->result();
                     </div>
 
                     <ul class="nav navbar-nav float-right">
-                        <?php if ($this->session->userdata('user')) { ?>
+                        <?php if ($this->session->userdata('email')) { ?>
                             <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
 
-                                    <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">John Doe</span><span class="user-status">Available</span></div><span><img class="round" src="<?= base_url(); ?>/app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"></span>
+                                    <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600"><?= $this->session->userdata('nama') ?></span><span class="user-status">Available</span></div><span><img class="round" src="<?= base_url(); ?>/app-assets/images/portrait/small/user_view.jpg" alt="avatar" height="40" width="40"></span>
 
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="auth-login.html"><i class="feather icon-power"></i> Logout</a>
+                                    <a class="dropdown-item" href="<?= base_url('auth/logout') ?>"><i class="feather icon-power"></i> Logout</a>
                                 </div>
 
                             </li>
@@ -161,28 +161,30 @@ $menu = $this->db->query($queryMenu)->result();
                 <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class="active mr-1" data-menu=""><a href="<?= base_url() ?>"><i class="feather icon-home"></i><span data-i18n="Dashboard">Dashboard</span></a>
                     </li>
-                    <?php foreach ($menu as $m) : ?>
-                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather <?= $m->icon_menu ?>"></i><span data-i18n="Apps"><?= $m->menu ?></span></a>
-                            <ul class="dropdown-menu">
-                                <!-- SIAPKAN SUB MENU SESUAI SUB MENU-->
-                                <?php
-                                $menuId = $m->id;
-                                $querySubMenu = "SELECT *
+                    <?php if ($this->session->userdata('email')) { ?>
+                        <?php foreach ($menu as $m) : ?>
+                            <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather <?= $m->icon_menu ?>"></i><span data-i18n="Apps"><?= $m->menu ?></span></a>
+                                <ul class="dropdown-menu">
+                                    <!-- SIAPKAN SUB MENU SESUAI SUB MENU-->
+                                    <?php
+                                    $menuId = $m->id;
+                                    $querySubMenu = "SELECT *
                                                     FROM `user_sub_menu` JOIN `user_menu`
                                                     ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
                                                     WHERE `user_sub_menu`.`menu_id` = $menuId
                                                     AND `user_sub_menu`.`is_active` = 1
                                                     AND `user_sub_menu`.`id` != 2";
 
-                                $subMenu = $this->db->query($querySubMenu)->result();
-                                ?>
-                                <?php foreach ($subMenu as $sm) : ?>
-                                    <li data-menu=""><a class="dropdown-item" href="<?= base_url() . $sm->url ?>" data-toggle="dropdown" data-i18n="Chat"><i class="feather <?= $sm->icon ?>"></i><?= $sm->title ?></a>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </li>
-                    <?php endforeach; ?>
+                                    $subMenu = $this->db->query($querySubMenu)->result();
+                                    ?>
+                                    <?php foreach ($subMenu as $sm) : ?>
+                                        <li data-menu=""><a class="dropdown-item" href="<?= base_url() . $sm->url ?>" data-toggle="dropdown" data-i18n="Chat"><i class="feather <?= $sm->icon ?>"></i><?= $sm->title ?></a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php } ?>
 
                 </ul>
             </div>

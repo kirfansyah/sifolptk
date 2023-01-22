@@ -16,7 +16,7 @@
                                <div class="card-header">
                                    <h4 class="card-title">Tambah User</h4>
                                </div>
-                               <form class="user" method="post" action="<?php echo base_url('user/add'); ?> ">
+                               <form class="user" method="post" action="<?php echo base_url('user/add'); ?> " id="myFORM">
                                    <div class="card-content">
                                        <div class="card-body">
                                            <form class="form form-horizontal">
@@ -25,11 +25,27 @@
                                                        <div class="col-12">
                                                            <div class="form-group row">
                                                                <div class="col-md-4">
+                                                                   <span>NIK</span>
+                                                               </div>
+                                                               <div class="col-md-8">
+                                                                   <div class="position-relative has-icon-left">
+                                                                       <input type="text" maxlength="16" id="nik" class="form-control nik" name="nik" placeholder="Nik" value="<?= set_value('nik'); ?>">
+                                                                       <div class="form-control-position">
+                                                                           <i class="feather icon-user"></i>
+                                                                       </div>
+                                                                       <?php echo form_error('nik', '<small class="text-danger pl-3">', '</small>'); ?>
+                                                                   </div>
+                                                               </div>
+                                                           </div>
+                                                       </div>
+                                                       <div class="col-12">
+                                                           <div class="form-group row">
+                                                               <div class="col-md-4">
                                                                    <span>Nama</span>
                                                                </div>
                                                                <div class="col-md-8">
                                                                    <div class="position-relative has-icon-left">
-                                                                       <input type="text" id="name" class="form-control name" name="name" placeholder="Nama" value="<?= set_value('name'); ?>">
+                                                                       <input type="text" id="name" class="form-control name" name="name" placeholder="Nama" value="<?= set_value('name'); ?>" readonly>
                                                                        <div class="form-control-position">
                                                                            <i class="feather icon-user"></i>
                                                                        </div>
@@ -153,3 +169,36 @@
 
 
    <?php $this->load->view('templates/footer'); ?>
+
+   <script>
+       $('#nik').change(function() {
+           //    alert($(this).val())
+           let nik = $(this).val()
+           $.ajax({
+               data: {
+                   nik
+               },
+               type: 'post',
+               dataType: 'json',
+               url: "<?= base_url('user/cek') ?>",
+               success: function(response) {
+                   //    alert(response)
+                   console.log(response)
+                   if (response.status == '200') {
+                       $('.name').val(response.nama)
+                   } else {
+                       $(':input', '#myFORM')
+                           .not(':button, :submit, :reset, :hidden')
+                           .val('')
+                           .prop('checked', false)
+                           .prop('selected', false);
+                       Swal.fire(
+                           response.message,
+                           '',
+                           'error'
+                       )
+                   }
+               }
+           })
+       })
+   </script>

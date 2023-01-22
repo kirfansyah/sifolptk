@@ -23,7 +23,7 @@ class User extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		// is_logged_in();
+		is_logged_in();
 		$this->load->model(array('M_user'));
 	}
 
@@ -45,6 +45,7 @@ class User extends CI_Controller
 		// }
 
 		$this->form_validation->set_rules('name', 'Name', 'required|trim');
+		$this->form_validation->set_rules('nik', 'NIK', 'required|trim|min_length[15]|max_length[16]|numeric|is_unique[tb_pegawai.nik]');
 		$this->form_validation->set_rules('role', 'Role', 'required|trim');
 		$this->form_validation->set_rules('status', 'Status', 'required|trim');
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
@@ -114,7 +115,7 @@ class User extends CI_Controller
 			$this->session->set_flashdata('message', 'update');
 			redirect(base_url('user'));
 		}
-	} 
+	}
 
 	public function delete($id)
 	{
@@ -122,5 +123,26 @@ class User extends CI_Controller
 		$this->M_user->delete($id);
 		$this->session->set_flashdata('message', 'delete');
 		redirect(base_url('user'));
+	}
+
+	public function cek()
+	{
+		$nik = $this->input->post('nik');
+		$data = $this->db->get_where('tb_pegawai', ['nik' => $nik]);
+
+		if ($data->num_rows() > 0) {
+			$nama = $data->row();
+			$nama = $nama->nama;
+			$response = [
+				'status' => 200,
+				'nama' => $nama
+			];
+		} else {
+			$response = [
+				'status' => 404,
+				'message' => 'Data tidak ditemukan!'
+			];
+		}
+		echo json_encode($response);
 	}
 }

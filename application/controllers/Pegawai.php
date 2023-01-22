@@ -23,7 +23,7 @@ class Pegawai extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		// is_logged_in();
+		is_logged_in();
 		$this->load->model(array('M_user', 'M_pegawai'));
 	}
 
@@ -42,7 +42,7 @@ class Pegawai extends CI_Controller
 	{
 
 		$this->form_validation->set_rules('nama', 'Nama', 'required|trim');
-		$this->form_validation->set_rules('nik', 'NIK', 'required|trim|min_length[15]|max_length[16]|numeric');
+		$this->form_validation->set_rules('nik', 'NIK', 'required|trim|min_length[15]|max_length[16]|numeric|is_unique[tb_pegawai.nik]');
 		$this->form_validation->set_rules('no_hp', 'No. Hp', 'required|trim|min_length[11]|max_length[13]|numeric');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
 		$this->form_validation->set_rules('jabatan', 'Jabatan', 'required|trim');
