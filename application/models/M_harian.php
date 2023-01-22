@@ -24,6 +24,15 @@ class M_harian extends CI_Model
         return $query;
     }
 
+    public function get_by_idx($id)
+    {
+        $query = $this->db->query("SELECT a.id, a.nama, a.no_hp, a.no_reg, a.tanggal_registrasi, a.keterangan,b.id as id_layanan, b.layanan, a.sts_app,c.id as id_pegawai, c.nama as nama_pegawai FROM tb_registrasi as a 
+        LEFT JOIN tb_layanan as b on a.id_layanan = b.id
+        LEFT JOIN tb_pegawai as c on a.id_pegawai = c.id
+        WHERE (a.sts_app = '1' OR a.sts_app = '2') AND c.id = '$id'")->result();
+        return $query;
+    }
+
     public function get_timeline($no_reg)
     {
         $query = $this->db->query("SELECT * FROM tb_riwayat WHERE no_reg = '$no_reg' ORDER BY id DESC")->result();

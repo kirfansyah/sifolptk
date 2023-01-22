@@ -29,7 +29,13 @@ class Harian extends CI_Controller
 
 	public function index()
 	{
-		$data['harian'] = $this->M_harian->get();
+		$role_id = $this->session->userdata('role_id');
+		if ($role_id == '1') {
+			$data['harian'] = $this->M_harian->get();
+		} else {
+			$id = $this->session->userdata('id');
+			$data['harian'] = $this->M_harian->get_by_idx($id);
+		}
 
 		$this->load->view('harian/harian', $data);
 	}

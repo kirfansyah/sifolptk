@@ -30,6 +30,7 @@
                                                                <div class="col-md-8">
                                                                    <div class="position-relative has-icon-left">
                                                                        <input type="text" maxlength="16" id="nik" class="form-control nik" name="nik" placeholder="Nik" value="<?= set_value('nik'); ?>">
+                                                                       <input type="text" maxlength="16" id="id_pegawai" class="form-control id_pegawai" name="id_pegawai" placeholder="id_pegawai">
                                                                        <div class="form-control-position">
                                                                            <i class="feather icon-user"></i>
                                                                        </div>
@@ -186,6 +187,7 @@
                    console.log(response)
                    if (response.status == '200') {
                        $('.name').val(response.nama)
+                       $('.id_pegawai').val(response.id_pegawai)
                    } else {
                        $(':input', '#myFORM')
                            .not(':button, :submit, :reset, :hidden')
