@@ -38,10 +38,19 @@ class Dashboard extends CI_Controller
 	{
 		$no_reg = $this->input->post('no_regis');
 		$timeline = $this->M_harian->get_timeline($no_reg);
+		$cek_rating = $this->db->get_where('tb_rating', ['no_reg' => $no_reg]);
+		if ($cek_rating->num_rows() > 0) {
+			$ket = 'sudah';
+		} else {
+			$ket = 'belum';
+		}
 		if ($timeline) {
 			$html = '';
 			foreach ($timeline as $key => $timeline_row) {
+
 				if ($key == key($timeline)) {
+					$id_pegawai = $timeline_row->id_pegawai;
+					$keterangan = $timeline_row->keterangan;
 					$html .= '<li>
 								<div class="timeline-icon bg-success">
 									<i class="feather icon-check font-medium-2 align-middle"></i>
@@ -66,7 +75,10 @@ class Dashboard extends CI_Controller
 			$response = [
 				'status' => 200,
 				'message' => 'Data tidak ditemukan!',
-				'html' => $html
+				'html' => $html,
+				'id_pegawai' => $id_pegawai,
+				'keterangan' => $keterangan,
+				'ket' => $ket
 			];
 			echo json_encode($response);
 		} else {
@@ -76,5 +88,22 @@ class Dashboard extends CI_Controller
 			];
 			echo json_encode($response);
 		}
+	}
+
+	public function rating()
+	{
+		$id_pegawai = $this->input->post('id_pegawai');
+		$rating     = $this->input->post('rating');
+		$no_reg     = $this->input->post('no_reg');
+
+		$data = [
+			'id_pegawai' => $id_pegawai,
+			'rating' => $rating,
+			'no_reg' => $no_reg
+
+		];
+
+		$this->db->insert('tb_rating', $data);
+		echo json_encode('halo');
 	}
 }

@@ -8,7 +8,8 @@ class M_pegawai extends CI_Model
 
     public function get()
     {
-        return $this->db->get($this->table)->result();
+        // return $this->db->get($this->table)->result();
+        return $this->db->query("SELECT *, (SELECT AVG(rating) as avg_rate FROM tb_rating where id_pegawai = a.id) as avg_rating FROM tb_pegawai as a")->result();
     }
 
     public function get_by_id($id)
@@ -36,6 +37,4 @@ class M_pegawai extends CI_Model
     {
         $this->db->insert($table, $data);
     }
-
-    
 } //end class M_pegawai

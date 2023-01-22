@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2023 at 06:25 AM
+-- Generation Time: Jan 22, 2023 at 11:10 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -65,7 +65,27 @@ CREATE TABLE `tb_pegawai` (
 --
 
 INSERT INTO `tb_pegawai` (`id`, `nama`, `nik`, `no_hp`, `alamat`, `jabatan`, `tgl_lahir`, `tempat_lahir`) VALUES
-(1, 'Denni Oktarina Siregar', '1111111111111111', '089603351280', 'Bengkulu', 'WKS', '26 January, 2023', 'MEDAN');
+(9, 'Denni Oktarina Siregar', '1111111111111111', '089603351280', 'Bengkulu', 'WKS', '26 January, 2023', 'MEDAN');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_rating`
+--
+
+CREATE TABLE `tb_rating` (
+  `id` int(11) NOT NULL,
+  `id_pegawai` int(11) NOT NULL,
+  `rating` varchar(128) NOT NULL,
+  `no_reg` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_rating`
+--
+
+INSERT INTO `tb_rating` (`id`, `id_pegawai`, `rating`, `no_reg`) VALUES
+(1, 9, '4', 'PTK117012023');
 
 -- --------------------------------------------------------
 
@@ -90,7 +110,7 @@ CREATE TABLE `tb_registrasi` (
 --
 
 INSERT INTO `tb_registrasi` (`id`, `id_pegawai`, `id_layanan`, `nama`, `no_hp`, `no_reg`, `tanggal_registrasi`, `sts_app`, `keterangan`) VALUES
-(1, 1, 2, 'apa aja', '089603351280', 'PTK22012023', '2023-01-22', '1', 'Permohonan telah di approve');
+(1, 1, 2, 'apa aja', '089603351280', 'PTK22012023', '2023-01-22', '1', 'Mulai proses');
 
 -- --------------------------------------------------------
 
@@ -146,7 +166,8 @@ INSERT INTO `tb_riwayat` (`id`, `id_pegawai`, `id_layanan`, `no_reg`, `keteranga
 (32, 9, 4, 'PTK217012023', 'Permohonan telah di approve 6', '1674139773'),
 (33, 9, 4, 'PTK217012023', 'Selesai', '1674139783'),
 (34, 1, 2, 'PTK22012023', 'Menunggu approval pimpinan', '1674364958'),
-(35, 1, 2, 'PTK22012023', 'Permohonan telah di approve', '1674364971');
+(35, 1, 2, 'PTK22012023', 'Permohonan telah di approve', '1674364971'),
+(36, 1, 2, 'PTK22012023', 'Mulai proses', '1674365229');
 
 -- --------------------------------------------------------
 
@@ -280,6 +301,12 @@ ALTER TABLE `tb_pegawai`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_rating`
+--
+ALTER TABLE `tb_rating`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_registrasi`
 --
 ALTER TABLE `tb_registrasi`
@@ -335,6 +362,12 @@ ALTER TABLE `tb_layanan`
 -- AUTO_INCREMENT for table `tb_pegawai`
 --
 ALTER TABLE `tb_pegawai`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tb_rating`
+--
+ALTER TABLE `tb_rating`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -347,7 +380,7 @@ ALTER TABLE `tb_registrasi`
 -- AUTO_INCREMENT for table `tb_riwayat`
 --
 ALTER TABLE `tb_riwayat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `user`

@@ -11,7 +11,7 @@
 
 
  <!-- BEGIN: Vendor JS-->
- <script src="<?= base_url(); ?>/app-assets/vendors/js/vendors.min.js"></script>
+ <script src="<?= base_url(); ?>app-assets/vendors/js/vendors.min.js"></script>
  <!-- BEGIN Vendor JS-->
 
  <!-- BEGIN: Page Vendor JS-->

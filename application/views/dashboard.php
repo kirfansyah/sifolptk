@@ -20,6 +20,7 @@
                            <div class="card">
                                <div class="card-header">
                                    <h4 class="card-title">PUSAT INFORMASI LAYANAN PTK</h4>
+
                                </div>
                                <div class="card-content">
                                    <div class="card-body">
@@ -93,7 +94,7 @@
                                                        <form class="form-inline no_regis">
                                                            <div class="form-group mx-sm-3 mb-2 mr-1">
                                                                <label for="inputPassword2" class="sr-only">No Registrasi</label>
-                                                               <input type="text" class="form-control" id="inputPassword2" name="no_regis" placeholder="No Registrasi">
+                                                               <input type="text" class="form-control" name="no_regis" id="no_regis" placeholder="No Registrasi">
                                                            </div>
                                                            <button type="submit" class="btn btn-primary mb-2">Tracking Proses</button>
                                                        </form>
@@ -288,7 +289,38 @@
    </div>
    <!-- END: Content-->
 
+   <!-- Modal -->
+   <div class="modal fade text-left" id="composeForm" tabindex="-1" role="dialog" aria-labelledby="emailCompose" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-scrollable">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h3 class="modal-title text-text-bold-600" id="emailCompose">Rate Pelayanan</h3>
+                   <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button> -->
+               </div>
+               <div class="modal-body pt-1">
+                   <div class="form-label-group mt-1">
+                       <input type="hidden" id="id_kar" class="form-control" placeholder="To" name="fname-floating">
+
+                   </div>
+                   <center>
+                       <div id="rateYo"></div>
+                   </center>
+               </div>
+               <div class="modal-footer">
+                   <input type="button" value="Send" class="btn btn-primary" id="getRating">
+                   <input type="Reset" value="Cancel" class="btn btn-white" data-dismiss="modal">
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <!-- <script src="<?= base_url(); ?>app-assets/vendors/js/vendors.min.js"></script> -->
+
+
    <?php $this->load->view('templates/footer'); ?>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script> -->
    <script>
        $("#form-registrasi").on("submit", function(event) {
            event.preventDefault();
@@ -349,16 +381,30 @@
                    url: '<?= base_url("dashboard/tracking") ?>',
                    data: $(this).serialize(),
                    success: function(response) {
-                       console.log(response)
+                       //    console.log(response)
                        if (response.status == 200) {
                            $('#replace').html('')
                            $('#replace').html(response.html)
+                           console.log(response.ket)
+                           if (response.keterangan == 'Selesai' && response.ket == 'belum') {
+                               setTimeout(function() {
+                                   $('#composeForm').modal('show').on('hide.bs.modal', function(e) {
+                                       e.preventDefault();
+                                   });
+                               }, 3000)
 
-                           Swal.fire(
-                               'Berhasil!',
-                               '',
-                               'success'
-                           )
+                               $('#id_kar').val(response.id_pegawai)
+                           } else {
+                               Swal.fire(
+                                   'Berhasil!',
+                                   '',
+                                   'success'
+                               )
+                           }
+
+
+
+
                        } else {
                            Swal.fire(
                                response.message,
@@ -384,6 +430,63 @@
                    'error'
                )
            }
+
+       });
+
+
+
+       $(document).ready(function() {
+           console.log("ready!");
+       });
+   </script>
+
+   <script type="text/javascript" src="<?= base_url() ?>app-assets/rate/jquery.rateyo.js"></script>
+   <script>
+       $(function() {
+
+           $("#rateYo").rateYo({
+               starWidth: "40px"
+           });
+
+           var $rateYo = $("#rateYo").rateYo();
+
+           $("#getRating").click(function() {
+
+               /* get rating */
+               var rating = $rateYo.rateYo("rating");
+               var id_pegawai = $('#id_kar').val()
+               var no_reg = $('#no_regis').val()
+               //    alert(no_reg)
+
+               console.log(rating)
+               $.ajax({
+                   url: "<?= base_url('dashboard/rating') ?>",
+                   type: 'post',
+                   dataType: 'json',
+                   data: {
+                       rating,
+                       id_pegawai,
+                       no_reg
+
+                   },
+                   success: function(response) {
+                       Swal.fire(
+                           'Terimakasih!',
+                           '',
+                           'success'
+                       )
+                   },
+                   error: function() {
+                       Swal.fire(
+                           'Gagal menyimpan data!',
+                           '',
+                           'error'
+                       )
+                   }
+               })
+               $('#composeForm').unbind();
+               $('#composeForm').modal('hide');
+           });
 
        });
    </script>

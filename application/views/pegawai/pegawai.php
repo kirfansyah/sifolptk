@@ -33,11 +33,13 @@
                                                        <th>Jabatan</th>
                                                        <th>Tgl. Lahir</th>
                                                        <th>Tempat Lahir</th>
+                                                       <th>Rating</th>
                                                        <th>Aksi</th>
                                                    </tr>
                                                </thead>
                                                <tbody>
-                                                   <?php $i=1; foreach ($pegawai as $pegawai_row) : ?>
+                                                   <?php $i = 1;
+                                                    foreach ($pegawai as $pegawai_row) : ?>
                                                        <tr>
                                                            <td><?= $i++ ?></td>
                                                            <td><?= $pegawai_row->nama ?></td>
@@ -48,7 +50,10 @@
                                                            <td><?= date('d-m-Y', strtotime($pegawai_row->tgl_lahir)) ?></td>
                                                            <td><?= $pegawai_row->tempat_lahir ?></td>
                                                            <td>
-                                                               <a class="btn btn-sm btn-outline-success" href="<?= base_url('pegawai/edit/') . $pegawai_row->id ?>"><i class="feather icon-edit"></i></a>                                                               
+                                                               <div class="rateYo" data-rateyo-rating="<?= $pegawai_row->avg_rating ?>" data-rateyo-spacing="10px" data-rateyo-num-stars="5"></div>
+                                                           </td>
+                                                           <td>
+                                                               <a class="btn btn-sm btn-outline-success" href="<?= base_url('pegawai/edit/') . $pegawai_row->id ?>"><i class="feather icon-edit"></i></a>
                                                                <div class="btn btn-sm btn-outline-danger hapus" id="hapus" data-data="<?= $pegawai_row->id ?>"><i class="feather icon-trash"></i></div>
                                                            </td>
                                                        </tr>
@@ -56,14 +61,15 @@
 
                                                <tfoot>
                                                    <tr>
-                                                      <th>No</th>
-                                                      <th>Nama</th>
+                                                       <th>No</th>
+                                                       <th>Nama</th>
                                                        <th>NIK</th>
                                                        <th>No HP</th>
                                                        <th>Alamat</th>
                                                        <th>Jabatan</th>
                                                        <th>Tgl. Lahir</th>
                                                        <th>Tempat Lahir</th>
+                                                       <th>Rating</th>
                                                        <th>Aksi</th>
                                                    </tr>
                                                </tfoot>
@@ -82,7 +88,7 @@
    </div>
    <!-- END: Content-->
 
-  
+
    <?php $this->load->view('templates/footer2'); ?>
    <script type="text/javascript">
        $(document).ready(function() {
@@ -90,16 +96,16 @@
 
            $('.hapus').click(function() {
                let id = $(this).attr('data-data')
-               let url = "<?= base_url()?>"
-               let x = confirm('Apakah anda akan menghapus data ini ?')               
-               if(x){
-                   window.location = url+"pegawai/delete/"+id;                
-               }else{
+               let url = "<?= base_url() ?>"
+               let x = confirm('Apakah anda akan menghapus data ini ?')
+               if (x) {
+                   window.location = url + "pegawai/delete/" + id;
+               } else {
                    Swal.fire(
-                        'Cancel!',
-                        '',
-                        'error'
-                    )
+                       'Cancel!',
+                       '',
+                       'error'
+                   )
                }
 
 
@@ -137,3 +143,39 @@
            )
        </script>
    <?php endif; ?>
+
+   <script type="text/javascript" src="<?= base_url() ?>app-assets/rate/jquery.rateyo.js"></script>
+   <script>
+       $(function() {
+
+           $("#rateYo").rateYo({
+               starWidth: "20px"
+           });
+
+
+           function rate() {
+               alert('helo')
+               //    current.rateYo({
+               //        rating: 3.2,
+               //        readOnly: true
+               //    });
+           }
+           $(".rateYo").rateYo({
+
+               readOnly: true
+           });
+
+
+
+
+
+       });
+
+       function rate(current) {
+           alert('helo')
+           $('.rateYo').rateYo({
+               rating: 3.2,
+               readOnly: true
+           });
+       }
+   </script>
