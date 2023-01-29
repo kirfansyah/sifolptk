@@ -46,16 +46,19 @@ if (($this->session->userdata('role_id'))) {
 
                             </li>
                         <?php } else { ?>
-                            <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
 
-
-                                    <div style="height: 40px; width:40px;"></div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="<?= base_url('auth') ?>"><i class="feather icon-power"></i> Login</a>
+                            <li class="dropdown dropdown-user nav-item">
+                                <div style="padding: 16px;">
+                                    <a class="" href="<?= base_url('auth') ?>"><i class="feather icon-power"> Login</i></a>
                                 </div>
 
                             </li>
+
+
+                            <!-- <a class="btn btn-success" href="<?= base_url('auth') ?>"><i class="feather icon-power"></i> Login</a> -->
+
+
+
                         <?php } ?>
                     </ul>
 

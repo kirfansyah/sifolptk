@@ -14,7 +14,7 @@
                        <div class="col-md-6 col-12">
                            <div class="card">
                                <div class="card-header">
-                                   <h4 class="card-title">Tambah Layanan</h4>
+                                   <h4 class="card-title">Edit Layanan</h4>
                                </div>
                                <form class="user" method="post" action="<?php echo base_url('layanan/update'); ?> ">
                                    <div class="card-content">

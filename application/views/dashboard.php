@@ -310,7 +310,7 @@
                </div>
                <div class="modal-footer">
                    <input type="button" value="Send" class="btn btn-primary" id="getRating">
-                   <input type="Reset" value="Cancel" class="btn btn-white" data-dismiss="modal">
+                   <!-- <input type="Reset" value="Cancel" class="btn btn-white" data-dismiss="modal"> -->
                </div>
            </div>
        </div>
@@ -391,7 +391,7 @@
                                    $('#composeForm').modal('show').on('hide.bs.modal', function(e) {
                                        e.preventDefault();
                                    });
-                               }, 3000)
+                               }, 1000)
 
                                $('#id_kar').val(response.id_pegawai)
                            } else {
